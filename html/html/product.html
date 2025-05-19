@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shoes - Paila (पैला)</title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+    <link rel="stylesheet" href="../css/header.css">
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            /* Using Arial as a common font */
+            background-color: #f4f4f4;
+            /* Light grey background color */
+            color: #333;
+            /* Default text color for light background */
+            line-height: 1.6;
+        }
+
+        /* Main Content Layout */
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+            display: flex;
+            /* Use flexbox for sidebar and content */
+            gap: 20px;
+            /* Space between sidebar and content */
+        }
+
+        .sidebar {
+            height: 1385px;
+            /* Auto height for sidebar */
+            width: 250px;
+            /* Fixed sidebar width */
+            flex-shrink: 0;
+            /* Prevent sidebar from shrinking */
+            background-color: #ffffff;
+            /* White background */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            color: #333;
+            /* Dark text */
+        }
+
+        .sidebar h3 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: #333;
+            /* Dark heading color */
+            font-size: 1.1em;
+            border-bottom: 1px solid #514848;
+            /* Lighter separator */
+            padding-bottom: 10px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            margin-bottom: 20px;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            margin-bottom: 8px;
+        }
+
+        .sidebar ul li a {
+            text-decoration: none;
+            color: #555;
+            /* Darker link color */
+            transition: color 0.3s ease;
+            display: block;
+        }
+
+        .sidebar ul li a:hover {
+            color: #000;
+            /* Black on hover */
+        }
+
+        .main-content {
+            flex-grow: 1;
+            /* Main content takes remaining space */
+        }
+
+        /* Info Card above Product Grid */
+        .info-card {
+            background-image: url(../images/band.jpg);
+            background-color: #ffffff;
+            /* White background */
+            color: #333;
+            /* Dark text */
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            height: 20%;
+        }
+
+        .info-card h2 {
+            margin-top: 0;
+            font-size: 2em;
+            margin-bottom: 15px;
+            color: #ffffff;
+            /* Dark heading */
+        }
+
+        .info-card p {
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: #555;
+            /* Darker text color */
+        }
+
+        .info-card a {
+            color: #007bff;
+            /* Blue link color */
+            text-decoration: underline;
+        }
+
+        .info-card .read-more {
+            background-color: #000000;
+            /* Blue button */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            margin-top: 20%;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .info-card .read-more:hover {
+            background-color: #0056b3;
+            /* Darker blue on hover */
+        }
+
+        /* Sort/Filter Bar */
+        .sort-filter-bar {
+            background-color: #ffffff;
+            /* White background */
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            color: #555;
+            /* Darker text color */
+        }
+
+        .sort-filter-bar .sort-options label,
+        .sort-filter-bar .filter-toggle button {
+            margin-right: 10px;
+            color: #555;
+        }
+
+        .sort-filter-bar .sort-options select {
+            padding: 5px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            /* Lighter border */
+            background-color: #fff;
+            /* White background */
+            color: #333;
+            /* Dark text */
+            font-size: 1em;
+            cursor: pointer;
+        }
+
+        .sort-filter-bar .filter-toggle button {
+            background-color: #eee;
+            /* Light grey button */
+            border: 1px solid #ccc;
+            /* Lighter border */
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 1em;
+            color: #333;
+            /* Dark text */
+        }
+
+        .sort-filter-bar .filter-toggle button:hover {
+            background-color: #ddd;
+            /* Slightly darker grey on hover */
+        }
+
+        /* Heading for the Product Grid Section */
+        .main-content h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-style: italic;
+            color: #333;
+            /* Dark heading color */
+        }
+
+        /* Product Grid Styling */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            /* Adjust minmax for card size */
+            gap: 20px;
+            /* Space between grid items */
+            margin: 0 auto;
+            /* Center the grid within main-content */
+        }
+
+        /* Individual Product Card Styling */
+        .product-card {
+            background-color: #ffffff;
+            /* White background */
+            border: 1px solid #eee;
+            /* Lighter border */
+            border-radius: 8px;
+            padding: 15px;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            /* Lighter shadow */
+            transition: box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            /* Lighter shadow on hover */
+        }
+
+        .product-card .product-image {
+            width: 100%;
+            margin-bottom: 10px;
+            background-color: #f9f9f9;
+            /* Very light background for image area */
+            border-radius: 4px;
+            padding: 10px;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        .product-card .product-image img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            object-fit: contain;
+        }
+
+        .product-card .product-brand {
+            font-size: 0.8em;
+            color: #777;
+            /* Darker color */
+            margin-bottom: 2px;
+            display: block;
+        }
+
+        .product-card .product-name {
+            font-size: 1em;
+            font-weight: 600;
+            color: #333;
+            /* Dark color */
+            margin-bottom: 5px;
+            line-height: 1.4;
+        }
+
+        .product-card .product-price {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #2f8938;
+            /* Green price color (can keep this or adjust) */
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+
+        .product-card .product-price .original-price {
+            text-decoration: line-through;
+            color: #999;
+            /* Lighter grey */
+            margin-left: 5px;
+            font-size: 0.8em;
+            font-weight: normal;
+        }
+
+        /* Quick info like Lowest Ask/Last Sale */
+        .product-card .quick-info {
+            text-align: left;
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: #555;
+            /* Darker color */
+        }
+
+        .product-card .quick-info strong {
+            font-weight: bold;
+            color: #333;
+            /* Dark color */
+        }
+
+        /* Favorite Icon Styling */
+        .favorite-icon {
+            position: absolute;
+            top: 10px;
+            /* Adjust position from top */
+            right: 10px;
+            /* Adjust position from right */
+            font-size: 1.2em;
+            /* Size of the heart icon */
+            color: #ccc;
+            /* Default color (grey) */
+            cursor: pointer;
+            z-index: 5;
+            /* Ensure it's on top */
+            transition: color 0.3s ease;
+        }
+
+        .favorite-icon:hover {
+            color: #e74c3c;
+            /* Red color on hover */
+        }
+
+        /* Cart Icon Styling (for adding to cart) */
+        .cart-icon {
+            position: absolute;
+            bottom: 10px;
+            /* Adjust position from bottom */
+            right: 10px;
+            /* Adjust position from right */
+            font-size: 1.3em;
+            /* Size of the cart icon */
+            color: #2f8938;
+            /* Green color */
+            cursor: pointer;
+            z-index: 5;
+            /* Ensure it's on top */
+            transition: color 0.3s ease;
+        }
+
+        .cart-icon:hover {
+            color: #225f29;
+            /* Darker green on hover */
+        }
+
+        /* Navigation Button Styling (from original code) */
+        .navigation {
+            text-align: center;
+            margin-top: 40px;
+            /* More space above navigation */
+            margin-bottom: 20px;
+            /* Space below navigation */
+        }
+
+        .nav-button {
+            display: inline-block;
+            padding: 10px 25px;
+            background-color: #2f8938;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .nav-button:hover {
+            background-color: #333;
+        }
+
+        /* Footer Styling */
+        footer {
+            background-color: #d3d3d3;
+            /* Lighter grey for footer */
+            color: #333;
+            padding: 30px 0;
+            /* Adjusted padding */
+        }
+
+        footer .container {
+            max-width: 1200px;
+            /* Match main content width */
+            margin: 0 auto;
+            /* Center the footer content */
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+            padding: 0 20px;
+            /* Added horizontal padding */
+        }
+
+        footer .logo {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        footer .logo img {
+            width: 30px;
+            margin-right: 10px;
+        }
+
+        footer .logo span {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        footer .footer-left p {
+            color: #666;
+        }
+
+        footer .footer-links h4,
+        footer .footer-contact h4 {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        footer .footer-links ul {
+            list-style: none;
+            padding: 0;
+            /* Remove default padding */
+            margin: 0;
+            /* Remove default margin */
+        }
+
+        footer .footer-links ul li {
+            margin-bottom: 5px;
+        }
+
+        footer .footer-links ul li a {
+            color: #666;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer .footer-links ul li a:hover {
+            color: #333;
+        }
+
+        footer .footer-contact p {
+            margin-bottom: 5px;
+            color: #666;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding: 10px 0;
+            border-top: 1px solid #979797;
+            margin-top: 20px;
+            max-width: 1200px;
+            /* Match main content width */
+            margin: 20px auto 0 auto;
+            /* Center and add space */
+            padding: 0 20px;
+            /* Added horizontal padding */
+        }
+
+        .footer-bottom p {
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 992px) {
+            /* Tablets and smaller desktops */
+            .container {
+                flex-direction: column;
+                /* Stack sidebar and content */
+                padding: 0 15px;
+            }
+
+            .sidebar {
+                width: 100%;
+                /* Sidebar takes full width when stacked */
+                margin-bottom: 20px;
+            }
+
+            .product-grid {
+                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+                /* Adjust minmax for smaller screens */
+                gap: 15px;
+            }
+
+            .sort-filter-bar {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 10px 15px;
+            }
+
+            .sort-filter-bar .sort-options {
+                margin-bottom: 10px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            /* Mobile devices */
+            .container {
+                padding: 0 10px;
+            }
+
+            .product-grid {
+                grid-template-columns: 1fr;
+                /* Single column on small screens */
+                gap: 15px;
+            }
+
+            .product-card {
+                padding: 10px;
+                /* Reduce padding on smaller cards */
+                padding-bottom: 50px;
+                /* Adjust bottom padding for elements at the bottom */
+            }
+
+            .product-card .quick-info {
+                bottom: 35px;
+                /* Adjust position */
+                left: 10px;
+                right: 10px;
+            }
+
+            .cart-icon {
+                /* Adjust cart icon position on small screens */
+                bottom: 10px;
+                right: 10px;
+                font-size: 1.2em;
+            }
+
+            .favorite-icon {
+                /* Adjust favorite icon position on small screens */
+                top: 8px;
+                right: 8px;
+                font-size: 1em;
+            }
+
+            footer {
+                background-color: #d3d3d3;
+                /* Lighter grey for footer */
+                color: #333;
+                padding: 30px 0;
+                /* Adjusted padding */
+            }
+
+            footer .container {
+                max-width: 1200px;
+                /* Match main content width */
+                margin: 0 auto;
+                /* Center the footer content */
+                display: flex;
+                justify-content: space-between;
+                gap: 20px;
+                flex-wrap: wrap;
+                padding: 0 20px;
+                /* Added horizontal padding */
+            }
+
+            footer .logo {
+                display: flex;
+                align-items: center;
+                margin-bottom: 10px;
+            }
+
+            footer .logo img {
+                width: 30px;
+                margin-right: 10px;
+            }
+
+            footer .logo span {
+                font-size: 1.5em;
+                font-weight: bold;
+            }
+
+            footer .footer-left p {
+                color: #666;
+            }
+
+            footer .footer-links h4,
+            footer .footer-contact h4 {
+                font-size: 1.2em;
+                margin-bottom: 10px;
+            }
+
+            footer .footer-links ul {
+                list-style: none;
+                padding: 0;
+                /* Remove default padding */
+                margin: 0;
+                /* Remove default margin */
+            }
+
+            footer .footer-links ul li {
+                margin-bottom: 5px;
+            }
+
+            footer .footer-links ul li a {
+                color: #666;
+                text-decoration: none;
+                transition: color 0.3s ease;
+            }
+
+            footer .footer-links ul li a:hover {
+                color: #333;
+            }
+
+            footer .footer-contact p {
+                margin-bottom: 5px;
+                color: #666;
+            }
+
+            .footer-bottom {
+                text-align: center;
+                padding: 10px 0;
+                border-top: 1px solid #979797;
+                margin-top: 20px;
+                max-width: 1200px;
+                /* Match main content width */
+                margin: 20px auto 0 auto;
+                /* Center and add space */
+                padding: 0 20px;
+                /* Added horizontal padding */
+            }
+
+            .footer-bottom p {
+                font-size: 0.9em;
+                color: #666;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="../images/12.png" alt="PAHI-LAA Logo"> <span>PAHI-LAA</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="home.html">Home</a></li> <!-- Active link for Home -->
+                    <li><a href="./research.html">Research</a></li>
+                    <li><a href="./blog.html">Blogs</a></li>
+                    <li><a href="./product.html" class="active">Products</a></li>
+                    <li><a href="./contactus.html">Contact Us</a></li> <!-- Link to Contact Us page -->
+                    <li><a href="./aboutus.html">About Us</a></li>
+                </ul>
+            </nav>
+            <div class="search-bar">
+                <i class="fas fa-search" id="search-icon"></i>
+                <input type="text" id="search-input" placeholder="Search for brand, color, etc.">
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <aside class="sidebar">
+            <h3>Available Now</h3>
+            <ul>
+                <li><a href="#">Nike </a></li>
+                <li><a href="#">Jordan </a></li>
+            </ul>
+
+            <h3>Category</h3>
+            <ul>
+                <li><a href="#" class="active">Shoes</a></li>
+                <li><a href="#">Boots</a></li>
+                <li><a href="#">Slides & Sandals</a></li>
+                <li><a href="#">Cleats</a></li>
+                <li><a href="#">Clogs</a></li>
+            </ul>
+
+            <h3>Brands</h3>
+            <ul>
+                <li><a href="#">Nike</a></li>
+                <li><a href="#">Adidas</a></li>
+                <li><a href="#">Jordan</a></li>
+                <li><a href="#">Gucci</a></li>
+                <li><a href="#">Puma</a></li>
+                <li><a href="#">Vans</a></li>
+            </ul>
+            <h3>Colors</h3>
+            <ul>
+                <li><a href="#">Black</a></li>
+                <li><a href="#">Red</a></li>
+                <li><a href="#">Blue</a></li>
+                <li><a href="#">Green</a></li>
+                <li><a href="#">Purple</a></li>
+                <li><a href="#">White</a></li>
+            </ul>
+            <h3>Activity</h3>
+            <ul>
+                <li><a href="#">Streetwear</a></li>
+                <li><a href="#">Basketball</a></li>
+                <li><a href="#">Partywear</a></li>
+                <li><a href="#">Running</a></li>
+                <li><a href="#">Hiking</a></li>
+                <li><a href="#">Soccer</a></li>
+            </ul>
+            <hr style="color: black;">
+            <table style="width: 100%; max-width: 300px; border-collapse: collapse; margin: 20px 0; border: 1px solid black;">
+        <thead>
+            <tr>
+                <th colspan="3" style="background-color: #f8f8f8; color: #333; font-size: 1.2em; padding: 10px; text-align: left; border: 1px solid black;">Filters</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="padding: 10px; text-align: left; border: 1px solid black;"><a href="#" style="color: #333; text-decoration: none;">Gender</a></td>
+                <td style="padding: 10px; text-align: left; border: 1px solid black;"><a href="#" style="color: #333; text-decoration: none;">Men</a></td>
+                <td style="padding: 10px; text-align: left; border: 1px solid black;"><a href="#" style="color: #333; text-decoration: none;">Women</a></td>
+            </tr>
+        </tbody>
+    </table>
+        </aside>
+
+        <div class="main-content">
+            <div class="info-card">
+                <h2>Shoes</h2>
+                <button class="read-more">Read More</button>
+            </div>
+
+            <div class="sort-filter-bar">
+                <div class="breadcrumbs">
+                    <a href="#">Home</a> / <a href="#">Shoes</a>
+                </div>
+                <div class="sort-options">
+                    <label for="sort">Sort:</label>
+                    <select id="sort">
+                        <option value="featured">Featured</option>
+                        <option value="newest">Newest</option>
+                        <option value="lowest_ask">Lowest Ask</option>
+                        <option value="highest_bid">Highest Bid</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="favorite-icon"><i class="fas fa-heart"></i></div>
+                    <div class="product-image">
+                        <a href="./productdynamic.html">
+                        <img src="../images/1.avif" alt="Product Name"></a>
+                    </div>
+                    <span class="product-brand">Nike</span>
+                    <div class="product-name">Fragment x Travis Scott</div>
+                    <div class="product-price"><del>$60</del> $45 </div>
+                    <p>Ratings:4.2/5</p>
+                    <div class="quick-info">Lowest Ask: <strong>$45</strong></div>
+                
+                </div>
+
+                <div class="product-card">
+                    <div class="favorite-icon"><i class="fas fa-heart"></i></div>
+                    <div class="product-image">
+                        <img src="../images/2.avif" alt="Product Name">
+                    </div>
+                    <span class="product-brand">Nike</span>
+                    <div class="product-name">Travis Scott Black Phantom</div>
+                    <div class="product-price"> $79 </div>
+                                        <p>Ratings:4.6/5</p>
+
+                    <div class="quick-info">Lowest Ask: <strong>$79</strong></div>
+                </div>
+
+                <div class="product-card">
+                    <div class="favorite-icon"><i class="fas fa-heart"></i></div>
+                    <div class="product-image">
+                        <img src="../images/3.avif" alt="Product Name">
+                    </div>
+                    <span class="product-brand">Nike</span>
+                    <div class="product-name">Travis Scott Mocha</div>
+                    <div class="product-price"> $91 </div>
+                                                            <p>Ratings:4.1/5</p>
+
+                    <div class="quick-info">Lowest Ask: <strong>$91</strong></div>
+                </div>
+
+                <div class="product-card">
+                    <div class="favorite-icon"><i class="fas fa-heart"></i></div>
+                    <div class="product-image">
+                        <img src="../images/4.avif" alt="Product Name">
+                    </div>
+                    <span class="product-brand">Nike</span>
+                    <div class="product-name">Spider-Man Across the Spider-Verse</div>
+                    <div class="product-price"><del>$80</del> $66 </div>
+                                                            <p>Ratings:4.0/5</p>
+
+                    <div class="quick-info">Lowest Ask: <strong>$66</strong></div>
+                </div>
+
+                <div class="product-card">
+                    <div class="favorite-icon"><i class="fas fa-heart"></i></div>
+                    <div class="product-image">
+                        <img src="../images/Nike-Dunk-SB-High-Three-Bears-Papa-Product.avif" alt="Product Name">
+                    </div>
+                    <span class="product-brand">Nike</span>
+                    <div class="product-name">Nike Dunk Papa Bear</div>
+                    <div class="product-price"> $120</div>
+                                                            <p>Ratings:4.3/5</p>
+
+                    <div class="quick-info">Lowest Ask: <strong>$120</strong></div>
+                </div>
+
+                <div class="product-card">
+                    <div class="favorite-icon"><i class="fas fa-heart"></i></div>
+                    <div class="product-image">
+                        <img src="../images/5.avif" alt="Product Name">
+                    </div>
+                    <span class="product-brand">Nike</span>
+                    <div class="product-name">Nike SB Dunk Low Pro</div>
+                    <div class="product-price"><del>$200</del> $150 </div>
+                                                            <p>Ratings:4.6/5</p>
+
+                    <div class="quick-info">Lowest Ask: <strong>$150</strong></div>
+                </div>
+                <div class="product-card">
+                    <div class="favorite-icon"><i class="fas fa-heart"></i></div>
+                    <div class="product-image">
+                        <img src="../images/j9.avif" alt="Product Name">
+                    </div>
+                    <span class="product-brand">Jordan</span>
+                    <div class="product-name">Jordan 9 Retro</div>
+                    <div class="product-price"> $380</div>
+                                                            <p>Ratings:4.9/5</p>
+
+                    <div class="quick-info">Lowest Ask: <strong>$380</strong></div>
+                </div>
+                <div class="product-card">
+                    <div class="favorite-icon"><i class="fas fa-heart"></i></div>
+                    <div class="product-image">
+                        <img src="../images/desert.avif" alt="Product Name">
+                    </div>
+                    <span class="product-brand">Jordan</span>
+                    <div class="product-name">SB Dunk Pro Desert</div>
+                    <div class="product-price"><del>$400</del> $350 </div>
+                                                            <p>Ratings:4.1/5</p>
+
+                    <div class="quick-info">Lowest Ask: <strong>$350</strong></div>
+                </div>
+                <div class="product-card">
+                    <div class="favorite-icon"><i class="fas fa-heart"></i></div>
+                    <div class="product-image">
+                        <img src="../images/0..avif" alt="Product Name">
+                    </div>
+                    <span class="product-brand">Jordan</span>
+                    <div class="product-name">Nike SB Low Dunk Paris</div>
+                    <div class="product-price"> $280</div>
+                                                            <p>Ratings:5/5</p>
+
+                    <div class="quick-info">Lowest Ask: <strong>$280</strong></div>
+                </div>
+            </div>
+
+            <div class="navigation">
+                <a href="#next" class="nav-button">Next Page ></a>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="container">
+            <div class="footer-left">
+                <div class="logo">
+                    <span>PAHI-LAA</span>
+                </div>
+                <p>"Every step tells a story — our footwear is made to walk with you,<br> through everyday moments and
+                    unforgettable journeys.<br> Comfortable, reliable, and made for life on the move."</p>
+            </div>
+            <div class="footer-links">
+                <h4>Our Store</h4>
+                <ul>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Service</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Further Links</h4>
+                <ul>
+                    <li><a href="#">Term & Condition</a></li>
+                    <li><a href="#">News</a></li>
+                    <li><a href="#">Learning</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h4>Get In Touch</h4>
+                <p>Infomatics College Pkr</p>
+                <p>+977-876-7432</p>
+                <p>support@pahila.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Copyright © 2025 PAHI-LAA | Powered by PAHI-LAA</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Search Functionality -->
+    <script src="/javascript/searchbar.js"></script>
+</body>
+
+</html>

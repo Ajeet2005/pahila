@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Paila (पैला)</title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+    <link rel="stylesheet" href="../css/header.css">
+    <style>
+        /* Basic Reset & Body Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            /* Light grey background */
+            color: #333;
+            /* Default text color */
+            line-height: 1.6;
+        }
+
+        /* Header Styling */
+       
+        /* Large Banner Styling */
+        .blog-banner {
+            width: 100%;
+            height: 300px;
+            /* Adjust height as needed */
+            background: url('../images/blog7.jpg') no-repeat center center/cover;
+            /* Placeholder banner image */
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            /* Add padding */
+            box-sizing: border-box;
+            position: relative;
+            /* Needed for overlay */
+        }
+
+        /* Overlay for better text readability */
+        .blog-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+            /* Dark overlay */
+        }
+
+        .blog-banner h1 {
+            font-style: italic;
+            color: #f4ff83;
+            margin: 0;
+            font-size: 3em;
+            /* Larger heading */
+            z-index: 1;
+            /* Ensure text is above overlay */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            /* Text shadow for readability */
+        }
+
+        .blog-banner p {
+            margin-top: 10px;
+            font-size: 1.2em;
+            font-style: italic;
+            z-index: 1;
+            text-shadow: 1px 1px 3px rgb(255 0 0 / 50%)
+                /* Text shadow */
+        }
+
+
+        /* Main Content Area - Full Width */
+        main {
+            /* Removed max-width */
+            width: 100%;
+            /* Take full width */
+            margin: 20px auto;
+            /* Center the main content and add space */
+            padding: 0;
+            /* Remove padding here, add to inner container if needed */
+            /* Removed background-color, box-shadow, border-radius */
+        }
+
+        /* Inner container for main content to add padding/styling */
+        .main-content-inner {
+            max-width: 1200px;
+            /* Optional: Add a max-width to the content inside main */
+            margin: 0 auto;
+            /* Center the inner content */
+            padding: 20px;
+            /* Add padding inside */
+            background-color: #fff;
+            /* White background for content */
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            /* Subtle shadow */
+            border-radius: 8px;
+            box-sizing: border-box;
+            /* Include padding in width */
+        }
+
+
+        main h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2em;
+        }
+
+        .intro-text {
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .intro-text h2 {
+            color: #495961;
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        .intro-text p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+
+        /* Grid for Blog Links - 3 items per row */
+        .blog-links-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* Force 3 items per row */
+            gap: 25px;
+            /* Space between grid items */
+            padding: 0 20px;
+            /* Add horizontal padding to the grid itself */
+            max-width: 1200px;
+            /* Match inner content width */
+            margin: 0 auto;
+            /* Center the grid */
+        }
+
+        /* Styling for each individual blog link item (the clickable box) */
+        .blog-link-item {
+            background-color: #f9f9f9;
+            /* Light background for each item */
+            border: 1px solid #eee;
+            /* Subtle border */
+            border-radius: 8px;
+            padding: 15px;
+            text-align: left;
+            /* Align text left */
+            transition: box-shadow 0.3s ease, transform 0.2s ease;
+            text-decoration: none;
+            /* Remove underline from the link block */
+            color: #333;
+            /* Default text color for the link block */
+            display: flex;
+            /* Use flexbox for internal layout */
+            flex-direction: column;
+            /* Stack content vertically */
+            position: relative;
+            /* Needed for absolute positioning of meta info */
+            padding-bottom: 45px;
+            /* Add space for meta info at the bottom */
+        }
+
+        .blog-link-item:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transform: translateY(-5px);
+            /* Lift effect on hover */
+        }
+
+        .blog-link-item .blog-image {
+            width: 100%;
+            height: 180px;
+            /* Fixed height for../images */
+            object-fit: cover;
+            /* Cover the area without distorting aspect ratio */
+            border-radius: 4px;
+            margin-bottom: 10px;
+            display: block;
+            /* Remove extra space below image */
+        }
+
+        .blog-link-item h3 {
+            color: #495961;
+            /* Heading color */
+            margin-top: 0;
+            margin-bottom: 8px;
+            font-size: 1.2em;
+            line-height: 1.4;
+            /* Improved readability */
+        }
+
+        .blog-link-item p {
+            font-size: 0.9em;
+            color: #555;
+            margin-bottom: 15px;
+            flex-grow: 1;
+            /* Allow description to take up available space */
+            line-height: 1.5;
+        }
+
+        /* Style for the "Visit Blog" button */
+        .blog-link-item .visit-blog-button {
+            display: inline-block;
+            /* Make it a block element */
+            background-color: #2f8938;
+            /* Green button color */
+            color: white;
+            /* White text color */
+            padding: 8px 15px;
+            /* Padding inside the button */
+            border: none;
+            /* Remove default button border */
+            border-radius: 5px;
+            /* Rounded corners */
+            text-decoration: none;
+            /* Remove underline from link */
+            font-weight: bold;
+            cursor: pointer;
+            /* Indicate it's clickable */
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            margin-top: 10px;
+            /* Space above the button */
+            align-self: flex-start;
+            /* Align button to the left */
+            font-size: 0.9em;
+            /* Smaller font size for button */
+        }
+
+        .blog-link-item .visit-blog-button:hover {
+            background-color: #225f29;
+            /* Darker green on hover */
+            transform: translateY(-2px);
+            /* Slight lift effect */
+        }
+
+        /* Style for website name and date */
+        .blog-link-item .meta-info {
+            position: absolute;
+            bottom: 10px;
+            /* Position from the bottom */
+            right: 15px;
+            /* Position from the right */
+            font-size: 0.7em;
+            /* Small font size */
+            color: #777;
+            /* Grey color */
+            text-align: right;
+            /* Align text to the right */
+        }
+
+        /* Banner Section Styling */
+        .promo-banner {
+            height: 195px;
+            width: 100%;
+            max-width: 1200px;
+            /* Match main content width */
+            margin: 40px auto;
+            /* Space above and below, center */
+            color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            /* Allow wrapping */
+            box-sizing: border-box;
+            /* Include padding in width */
+            background-image: url(../images/bannner.jpg);
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            /* Needed for overlay */
+            overflow: hidden;
+            /* Hide overflowing content */
+        }
+
+        /* Overlay for the promo banner */
+        .promo-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            /* Semi-transparent dark overlay */
+        }
+
+
+        .promo-banner .promo-text {
+            flex-grow: 1;
+            /* Allow text to take up space */
+            z-index: 1;
+            /* Ensure text is above overlay */
+            max-width: 60%;
+            /* Limit text width */
+        }
+
+        .promo-banner h2 {
+            margin-top: 0;
+            font-size: 2em;
+            margin-bottom: 5px;
+            color: #fff;
+            /* White text */
+        }
+
+        .promo-banner .tagline-small {
+            font-size: 1em;
+            margin-bottom: 15px;
+            color: #eee;
+            /* Lighter text */
+        }
+
+        .promo-banner .price-info {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #ffff00;
+            /* Yellow color for price */
+            margin-bottom: 20px;
+        }
+
+        .promo-banner .promo-button {
+            background-color: #fff;
+            /* White button */
+            color: #6a1b9a;
+            /* Dark purple text */
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            /* Rounded button */
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            z-index: 1;
+            /* Ensure button is above overlay */
+        }
+
+        .promo-banner .promo-button:hover {
+            background-color: #eee;
+            transform: translateY(-2px);
+        }
+
+
+        /* Footer Styling */
+        footer {
+            background-color: #d3d3d3;
+            /* Lighter grey for footer */
+            color: #333;
+            padding: 30px 0;
+            /* Adjusted padding */
+        }
+
+        footer .container {
+            max-width: 1200px;
+            /* Match main content width */
+            margin: 0 auto;
+            /* Center the footer content */
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+            padding: 0 20px;
+            /* Added horizontal padding */
+        }
+
+        footer .logo {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        footer .logo img {
+            width: 30px;
+            margin-right: 10px;
+        }
+
+        footer .logo span {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        footer .footer-left p {
+            color: #666;
+        }
+
+        footer .footer-links h4,
+        footer .footer-contact h4 {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        footer .footer-links ul {
+            list-style: none;
+            padding: 0;
+            /* Remove default padding */
+            margin: 0;
+            /* Remove default margin */
+        }
+
+        footer .footer-links ul li {
+            margin-bottom: 5px;
+        }
+
+        footer .footer-links ul li a {
+            color: #666;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer .footer-links ul li a:hover {
+            color: #333;
+        }
+
+        footer .footer-contact p {
+            margin-bottom: 5px;
+            color: #666;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding: 10px 0;
+            border-top: 1px solid #979797;
+            margin-top: 20px;
+            max-width: 1200px;
+            /* Match main content width */
+            margin: 20px auto 0 auto;
+            /* Center and add space */
+            padding: 0 20px;
+            /* Added horizontal padding */
+        }
+
+        .footer-bottom p {
+            font-size: 0.9em;
+            color: #666;
+        }
+
+
+        /* Responsive Adjustments */
+        @media (max-width: 992px) {
+
+            /* Tablets and smaller desktops */
+            .blog-banner {
+                height: 200px;
+                /* Shorter banner on smaller screens */
+            }
+
+            .blog-banner h1 {
+                font-size: 2em;
+            }
+
+            .blog-banner p {
+                font-size: 1em;
+            }
+
+            .main-content-inner {
+                padding: 15px;
+            }
+
+            main h1 {
+                font-size: 1.8em;
+            }
+
+            .intro-text h2 {
+                font-size: 1.3em;
+            }
+
+            .blog-links-grid {
+                grid-template-columns: repeat(2, 1fr); /* 2 items per row for medium screens */
+                gap: 20px;
+                padding: 0 15px;
+            }
+
+            .blog-link-item {
+                padding: 10px;
+                padding-bottom: 35px;
+                /* Adjust padding for smaller meta info */
+            }
+
+            .blog-link-item .meta-info {
+                bottom: 8px;
+                right: 10px;
+                font-size: 0.6em;
+            }
+
+
+           
+            footer .container {
+                padding: 0 15px;
+            }
+
+            .footer-bottom {
+                padding: 10px 15px;
+            }
+
+            .promo-banner {
+                padding: 20px;
+                flex-direction: column;
+                /* Stack banner content vertically */
+                text-align: center;
+            }
+
+            .promo-banner .promo-text {
+                max-width: 100%;
+                /* Allow text to take full width */
+                margin-bottom: 20px;
+                /* Space below text */
+            }
+        }
+
+        @media (max-width: 768px) {
+            .blog-banner h1 {
+                font-size: 1.5em;
+            }
+
+            .blog-banner p {
+                font-size: 0.9em;
+            }
+
+            .main-content-inner {
+                padding: 10px;
+            }
+
+            .blog-links-grid {
+                grid-template-columns: 1fr; /* Single column on small screens */
+                gap: 15px;
+                padding: 0 10px;
+            }
+
+            .blog-link-item {
+                padding: 10px;
+                padding-bottom: 35px;
+                /* Adjust padding for smaller meta info */
+            }
+
+            .blog-link-item .meta-info {
+                bottom: 8px;
+                right: 10px;
+                font-size: 0.6em;
+            }
+
+            footer .container {
+                padding: 0 10px;
+            }
+
+            .footer-bottom {
+                padding: 10px 10px;
+            }
+
+            .promo-banner {
+                padding: 15px;
+            }
+
+            .promo-banner h2 {
+                font-size: 1.5em;
+            }
+
+            .promo-banner .tagline-small {
+                font-size: 0.9em;
+            }
+
+            .promo-banner .price-info {
+                font-size: 1.2em;
+            }
+
+            .promo-banner .promo-button {
+                padding: 10px 20px;
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+     <header>
+        <div class="container">
+            <div class="logo">
+                <img src="../images/12.png" alt="PAHI-LAA Logo"> <span>PAHI-LAA</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="home.html">Home</a></li> <!-- Active link for Home -->
+                    <li><a href="./research.html">Research</a></li>
+                                        <li><a href="./blog.html" class="active">Blogs</a></li>
+
+                    <li><a href="./product.html">Products</a></li>
+                    <li><a href="./contactus.html">Contact Us</a></li> <!-- Link to Contact Us page -->
+                    <li><a href="./aboutus.html">About Us</a></li>
+                </ul>
+            </nav>
+            <div class="search-bar">
+                <i class="fas fa-search"></i> <input type="text" placeholder="Search for brand, color, etc.">
+            </div>
+        </div>
+    </header>
+
+    <div class="blog-banner">
+        <h1>Technology and Trends-Shaping the Footwear Industry</h1>
+        <p>Innovations in Every Step: Where Technology Meets Footwear</p>
+    </div>
+
+    <main>
+
+
+        <div class="blog-links-grid">
+
+            <a href="https://sneakernews.com/" class="blog-link-item" target="_blank">
+                <img src="../images/blog1.jpg" alt="Latest Sneaker Release Image" class="blog-image">
+                <h3>Unveiling the Latest Sneaker Technology: What's Driving Innovation?</h3>
+                <p>Dive into the cutting-edge advancements in sneaker design and manufacturing. This article explores how technologies like Boost cushioning are revolutionizing comfort and performance in athletic and lifestyle footwear, offering unparalleled energy return with every step.</p>
+                <button class="visit-blog-button">Visit Blog →</button>
+                <span class="meta-info">sneakernews.com | May 2025</span>
+            </a>
+
+            <a href="https://www.highsnobiety.com/style/sneakers/" class="blog-link-item" target="_blank">
+                <img src="../images/blog4.jpg" alt="Streetwear Sneakers Image" class="blog-image">
+                <h3>From Runways to Streets: High-Fashion Footwear Trends You Need to Know</h3>
+                <p>Explore the convergence of high fashion and streetwear in the world of footwear. Discover how innovative construction methods like Flyknit are influencing the aesthetics and wearability of trendy sneakers, blurring the lines between performance and style.</p>
+                <button class="visit-blog-button">Visit Blog →</button>
+                <span class="meta-info">highsnobiety.com | May 2025</span>
+            </a>
+
+            <a href="https://weartesters.com/category/footwear-reviews/" class="blog-link-item" target="_blank">
+                <img src="../images/blogb.jpg" alt="Performance Footwear Review Image" class="blog-image">
+                <h3>Never Miss a Drop: Your Guide to Upcoming Sneaker Releases and Innovations</h3>
+                <p>Stay informed about the most anticipated sneaker releases and the innovations they feature. This guide highlights new technologies being integrated into upcoming drops, such as Gore-Tex for weather protection, ensuring you're ready for any condition while staying stylish</p>
+                <button class="visit-blog-button">Visit Blog →</button>
+                <span class="meta-info">weartesters.com | May 2025</span>
+            </a>
+
+            <a href="https://thesolesupplier.co.uk/news/" class="blog-link-item" target="_blank">
+                <img src="../images/blog7.jpg" alt="Sneaker Release Info Image" class="blog-image">
+                <h3>Beyond the Hype: Exploring the Vibrant World of Sneaker Culture and its Evolution</h3>
+                                 <p>Delve into the cultural phenomenon surrounding sneakers. This article explores the community, history, and evolving trends in sneaker culture, including the increasing focus on sustainable materials and ethical production methods that are gaining traction among enthusiasts.</p>
+
+                <button class="visit-blog-button">Visit Blog →</button>
+                <span class="meta-info">thesolesupplier.co.uk | May 2025</span>
+            </a>
+
+            <a href="https://www.nicekicks.com/" class="blog-link-item" target="_blank">
+                <img src="../images/blog3.jpg" alt="Sneaker Culture Image" class="blog-image">
+                 <h3>Unpacking Footwear Performance: In-Depth Analysis for Athletes and Enthusiasts</h3>
+                                <p>Gain a detailed understanding of what drives performance in athletic footwear. This in-depth analysis covers various technologies and their impact on speed, agility, and support, including the latest advancements in adaptive lacing systems for a personalized and secure fit.</p>
+
+                <button class="visit-blog-button">Visit Blog →</button>
+                <span class="meta-info">nicekicks.com | May 2025</span>
+            </a>
+
+            <a href="https://solecollector.com/" class="blog-link-item" target="_blank">
+                <img src="../images/blog8.jpg" alt="Shoe Collection Image" class="blog-image">
+                 <h3>Global Sneaker Culture: A Deep Dive into International Trends and History</h3>
+                                 <p>Explore the rich history and diverse global impact of sneaker culture. This piece highlights how different regions influence design and trends, examining the role of innovative midsole technologies, such as responsive foams, in meeting the demands of a global market.</p>
+
+                <button class="visit-blog-button">Visit Blog →</button>
+                <span class="meta-info">solecollector.com | May 2025</span>
+            </a>
+
+        </div>
+
+        <div class="promo-banner">
+            
+        </div>
+
+
+        <div class="blog-links-grid">
+            <a href="https://www.sneakerfreaker.com/" class="blog-link-item" target="_blank">
+                <img src="../images/blog9.jpg" alt="Sneaker Freaker Image" class="blog-image">
+                     <h3>Highlight: 3D Printing in Design</h3>
+                <p>Get an exclusive look at the forefront of footwear design and high-profile releases. This article explores how cutting-edge techniques like 3D printing are being used to create intricate, personalized, and futuristic elements in high-end and limited-edition shoes.</p>
+
+                <button class="visit-blog-button">Visit Blog →</button>
+                <span class="meta-info">sneakerfreaker.com | May 2025</span>
+            </a>
+
+            <a href="https://hypebeast.com/footwear" class="blog-link-item" target="_blank">
+                <img src="../images/blog5.jpg" alt="Hypebeast Sneakers Image" class="blog-image">
+                <h3>The Cutting Edge: High-End Footwear Drops and the Future of Design</h3>
+                 <p>Gain a detailed understanding of what drives performance in athletic footwear. This in-depth analysis covers various technologies and their impact on speed, agility, and support, including the latest advancements in adaptive lacing systems for a personalized and secure fit.</p>
+                <button class="visit-blog-button">Visit Blog →</button>
+                <span class="meta-info">hypebeast.com | May 2025</span>
+            </a>
+
+            <a href="https://www.complex.com/sneakers/" class="blog-link-item" target="_blank">
+                <img src="../images/bloga.jpg" alt="Complex Sneakers Image" class="blog-image">
+                <h3> Inside the Sneaker Industry: Expert Commentary and Market Analysis</h3>
+                <p> Gain valuable insights into the business and market dynamics of the sneaker industry. This commentary examines how data-driven design, leveraging performance metrics and consumer data, is influencing production and marketing strategies to create shoes that meet specific demands.</p>
+                <button class="visit-blog-button">Visit Blog →</button>
+                <span class="meta-info">complex.com | May 2025</span>
+            </a>
+
+        </div>
+
+    </main>
+    
+
+   <footer>
+        <div class="container">
+            <div class="footer-left">
+                <div class="logo">
+                    <span>PAHI-LAA</span>
+                </div>
+                <p>"Every step tells a story — our footwear is made to walk with you,<br> through everyday moments and
+                    unforgettable journeys.<br> Comfortable, reliable, and made for life on the move."</p>
+            </div>
+            <div class="footer-links">
+                <h4>Our Store</h4>
+                <ul>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Service</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Further Links</h4>
+                <ul>
+                    <li><a href="#">Term & Condition</a></li>
+                    <li><a href="#">News</a></li>
+                    <li><a href="#">Learning</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h4>Get In Touch</h4>
+                <p>Infomatics College Pkr</p>
+                <p>+977-876-7432</p>
+                <p>support@pahila.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Copyright © 2025 PAHI-LAA | Powered by PAHI-LAA</p>
+        </div>
+    </footer>
+             <script src="./searchbar.js">
+                
+             </script>
+
+</body>
+
+</html>

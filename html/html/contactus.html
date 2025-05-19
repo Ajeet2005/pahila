@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - PAHI-LAA</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="../css/contactstyle.css">
+        <link rel="stylesheet" href="../css/header.css">
+
+   
+    
+          
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="../images/12.png" alt="PAHI-LAA Logo">
+                <span>PAHI-LAA</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="./home.html">Home</a></li>
+                    <li><a href="./research.html">Research</a></li>
+                    <li><a href="./blog.html">Blogs</a></li>
+                    <li><a href="./product.html">Products</a></li>
+                    <li><a href="./contactus.html" class="active">Contact Us</a></li>
+                    <li><a href="./aboutus.html">About Us</a></li>
+                </ul>
+            </nav>
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search for brand, color, etc.">
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Get In Touch With US</h1>
+            <p>Thanks for stopping by!.Whether you have a question,feedback or just want to wave hi!.Don't be a
+                stranger.<br>We are here to help and
+                we love connecting with our community
+            </p>
+        </div>
+    </section>
+
+    <section class="contact">
+        <div class="container">
+            <div class="contact-info">
+                <div class="contact-card">
+                    <i class="fas fa-phone-alt"></i>
+                    <h3>Call Us</h3>
+                    <p>Toll free call</p>
+                    <p>207-876-7432</p>
+                </div>
+                <div class="contact-card">
+                    <i class="fab fa-whatsapp"></i>
+                    <h3>WhatsApp</h3>
+                    <p></p>
+                    <p>+977-123-234-345</p>
+                </div>
+                <div class="contact-card">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Chat to Us</h3>
+                    <p>Our friendly team is<br> here to help</p>
+                    <p>support@pahila.com</p>
+                </div>
+                <div class="contact-card">
+                    <i class="fas fa-store"></i>
+                    <h3>Visit Us</h3>
+                    <p>Come say hello to our office!</p>
+                    <p>Infomatics College Pkr</p>
+                </div>
+                <div class="map">
+                    <img src="../images/Screenshot 2025-05-02 185032.png" alt="Map Placeholder">
+                </div>
+            </div>
+            <div class="contact-form">
+                <h2>Let's Talk</h2>
+                <p>Use our contact form below for all information request or<br>
+                    contact us directly using the contact information</p>
+                <form id="contactForm" onsubmit="return validateform()">
+                    <input type="text" id="name" placeholder="Name" required>
+                    <input type="email" id="email" placeholder="Email" required>
+                    <input type="text" id="subject" placeholder="Subject" required>
+                    <textarea id="message" placeholder="Leave us your feedback." required></textarea>
+                    <div id="errormsg" class="error"></div>
+                    <button type="submit" onclick="al()">Send Now</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-left">
+                <div class="logo">
+                    <span>PAHI-LAA</span>
+                </div>
+                <p>"Every step tells a story — our footwear is made to walk with you,<br> through everyday moments and
+                    unforgettable journeys.<br> Comfortable, reliable, and made for life on the move."</p>
+            </div>
+            <div class="footer-links">
+                <h4>Our Store</h4>
+                <ul>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Service</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Further Links</h4>
+                <ul>
+                    <li><a href="#">Term & Condition</a></li>
+                    <li><a href="#">News</a></li>
+                    <li><a href="#">Learning</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h4>Get In Touch</h4>
+                <p>Infomatics College Pkr</p>
+                <p>+977-876-7432</p>
+                <p>support@pahila.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Copyright © 2025 PAHI-LAA | Powered by PAHI-LAA</p>
+        </div>
+    </footer>
+
+    <script>
+        function al(){
+            alert("Form submitted successfully!");
+        }
+        function validateform(){
+            //get value from input fields
+            let name= document.getElementById("name").value.trim();
+            let email=document.getElementById("email").value.trim();
+            let age=document.getElementById("age").value.trim();
+            let error=document.getElementById("error-msg");
+
+            //trim creates an extra area in semicolon "  test   " i.e not used in message
+
+            //clear previous msg
+            errormsg.innerHTML="";
+
+            //validate name
+            if(name===""){
+                errormsg.innterHTML="name is required";
+                return false;
+            }
+
+            //validate email with regex
+            //yole jun pattern lai ni accecpt garca kunai ko yahoo huna sakxa so make pattern accordingly
+            const emailpattern=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if(!emailpattern.test(email)){
+                errormsg.innerHTML="please enter a valid email address";
+                return false;
+            }
+
+            
+
+            alert("Form submitted successfully!");
+            return false;
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - PAHI-LAA</title>
+    <!-- Link to Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <style>
+        /* General styles shared across pages */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f0f0f0; /* Light grey background for the body */
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 0;
+            /* Adjust padding for specific sections if needed */
+        }
+
+       
+
+        /* Home page specific styles */
+
+        /* Hero/Introduction Section */
+        .hero-section {
+            background-image: url('./hero-bg.jpg'); /* Placeholder background image */
+            background-size: cover;
+            background-position: center;
+            color: #fff; /* Light text for dark background */
+            text-align: center;
+            padding: 80px 20px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            position: relative; /* Needed for overlay */
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+            border-radius: 8px;
+        }
+
+        .hero-content {
+            position: relative; /* Bring content above overlay */
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-content h1 {
+            font-size: 3em;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add text shadow for readability */
+        }
+
+        .hero-content p {
+            font-size: 1.2em;
+            margin-bottom: 25px;
+            color: #eee; /* Slightly lighter text for description */
+        }
+
+        .hero-content .shop-now-btn {
+            display: inline-block;
+            background-color: #2f8938; /* Green button */
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .hero-content .shop-now-btn:hover {
+            background-color: #225f29; /* Darker green on hover */
+        }
+        .slider-container {
+            position: relative;
+            width: 100%;
+            max-width: 1050px;
+            margin: 20px auto;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+        .slides {
+            display: flex;
+            width: 300%;
+            transition: transform 0.5s ease;
+        }
+        .slide {
+            width: 33.33%;
+            height: 400px;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            color: #333;
+        }
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .dots {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+        .dot {
+            width: 12px;
+            height: 12px;
+            background-color: #bbb;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .dot.active {
+            background-color: #333;
+        }
+
+        
+
+        /* Container for the entire scroller */
+        .scroller-container {
+            width: 100%; /* Full width container */
+            overflow: hidden; /* Hide content outside the container */
+            position: relative;
+            padding: 20px 0; /* Add vertical padding */
+            background-color: #fff; /* White background */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        }
+
+        /* Inner container that holds the duplicated slides */
+        .scroller-inner {
+            display: flex; /* Arrange items horizontally */
+            width: max-content; /* Allow content to take up necessary width */
+            animation: scroll-logos 30s linear infinite; /* Apply the animation */
+            /* Adjust duration (e.g., 30s) based on the number of logos and desired speed */
+        }
+
+        /* Pause animation on hover */
+        .scroller-container:hover .scroller-inner {
+            animation-play-state: paused;
+        }
+
+
+        /* Styling for each individual logo item */
+        .logo-item {
+            flex-shrink: 0; /* Prevent items from shrinking */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 30px; /* Space between logos */
+            /* Adjust padding to control spacing */
+        }
+
+        /* Styling for the brand logo../images */
+        .logo-item img {
+            max-height: 95px; /* Maximum height for logos */
+            width: auto; /* Maintain aspect ratio */
+            display: block;
+            filter: grayscale(100%); /* Grayscale effect */
+            opacity: 0.6; /* Slightly transparent */
+            transition: opacity 0.3s ease, filter 0.3s ease; /* Smooth transition for hover */
+        }
+
+        /* Hover effect for../images */
+        .logo-item img:hover {
+            opacity: 1; /* Full opacity on hover */
+            filter: grayscale(0%); /* Remove grayscale on hover */
+        }
+
+        /* Featured Collections Section */
+        .featured-collections {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 30px 0;
+            background-color: #fff; /* White background for this section */
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .featured-collections h2 {
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid */
+            gap: 20px; /* Space between items */
+            padding: 0 20px; /* Horizontal padding for grid */
+        }
+
+         /* Styling for individual featured items (similar to product cards) */
+        .featured-item {
+            background-color: #f9f9f9; /* Light background for items */
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none; /* Remove underline from link */
+            color: #333; /* Default text color */
+            display: block; /* Make the entire item clickable */
+        }
+
+        .featured-item:hover {
+            transform: translateY(-5px); /* Lift effect on hover */
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .featured-item img {
+            width: 100%;
+            height: 176px; /* Fixed height for../images */
+            object-fit: cover; /* Crop../images to fit */
+            border-radius: 4px;
+            margin-bottom: 40px;
+        }
+
+        .featured-item h3 {
+            font-size: 1.2em;
+            margin-bottom: 5px;
+            color: #000; /* Darker heading */
+        }
+
+        .featured-item p {
+            font-size: 0.9em;
+            color: #666; /* Medium grey for description */
+        }
+
+
+        /* Site Overview Section */
+       
+
+        .site-overview h2 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .overview-grid {
+             display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Responsive grid */
+            gap: 20px; /* Space between items */
+            padding: 0 20px; /* Horizontal padding for grid */
+        }
+
+        .overview-card {
+            background-color: #4a4343; /* White background for cards */
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none; /* Remove underline from link */
+            color: #ffffff; /* Default text color */
+            display: block; /* Make the entire card clickable */
+        }
+
+         .overview-card:hover {
+            transform: translateY(-5px); /* Lift effect on hover */
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .overview-card i {
+            font-size: 2em; /* Icon size */
+            color: #ffffff; /* Green icon color */
+            margin-bottom: 15px;
+        }
+
+
+        .overview-card h3 {
+             font-size: 1.3em;
+             margin-bottom: 10px;
+             color: #fffefe;
+        }
+
+        .overview-card p {
+            font-size: 1em;
+            color: #ffffff;
+        }
+
+
+        /* Footer styles (copied from other pages) */
+        footer {
+            background-color: #d3d3d3; /* Lighter grey for footer */
+            color: #333;
+            padding: 30px 0;
+            margin-top: 40px; /* Space above footer */
+        }
+
+        footer .container {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+            padding: 0 20px; /* Horizontal padding */
+        }
+
+        footer .footer-left {
+            flex: 1; /* Allow left section to grow */
+            min-width: 200px; /* Minimum width */
+        }
+
+         footer .logo {
+             display: flex;
+             align-items: center;
+             margin-bottom: 10px;
+         }
+
+         footer .logo span {
+             font-size: 1.5em;
+             font-weight: bold;
+             color: #333;
+         }
+
+        footer .footer-left p {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        footer .footer-links,
+        footer .footer-contact {
+            flex: 1; /* Allow sections to grow */
+            min-width: 150px; /* Minimum width */
+        }
+
+        footer .footer-links h4,
+        footer .footer-contact h4 {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        footer .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        footer .footer-links ul li {
+            margin-bottom: 8px;
+        }
+
+        footer .footer-links ul li a {
+            color: #666;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 0.9em;
+        }
+
+        footer .footer-links ul li a:hover {
+            color: #333;
+        }
+
+        footer .footer-contact p {
+            margin-bottom: 8px;
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding: 15px 20px 0; /* Add padding */
+            border-top: 1px solid #979797;
+            margin-top: 20px;
+        }
+
+        .footer-bottom p {
+            font-size: 0.8em;
+            color: #666;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            
+             .hero-content h1 {
+                 font-size: 2em;
+             }
+
+             .hero-content p {
+                 font-size: 1em;
+             }
+
+             .featured-collections h2,
+             .site-overview h2 {
+                 font-size: 2em;
+             }
+
+             .featured-grid,
+             .overview-grid {
+                 grid-template-columns: 1fr; /* Single column layout */
+                 padding: 0 15px;
+             }
+
+             .featured-item,
+             .overview-card {
+                 width: 100%;
+                 max-width: 400px; /* Limit max width even in single column */
+                 margin: 0 auto;
+             }
+
+            footer .container {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+             footer .footer-left,
+             footer .footer-links,
+             footer .footer-contact {
+                 width: 100%; /* Full width in column layout */
+                 margin-bottom: 20px;
+             }
+
+             footer .footer-links ul {
+                 padding: 0;
+             }
+        }
+
+        
+        
+
+    </style>
+</head>
+
+<body>
+
+    <!-- Header Section -->
+     <header>
+        <div class="container">
+            <div class="logo">
+                <img src="../images/12.png" alt="PAHI-LAA Logo"> <span>PAHI-LAA</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="home.html" class="active">Home</a></li> <!-- Active link for Home -->
+                    <li><a href="./research.html">Research</a></li>
+                                        <li><a href="./blog.html" >Blogs</a></li>
+
+                    <li><a href="./product.html">Products</a></li>
+                    <li><a href="./contactus.html">Contact Us</a></li> <!-- Link to Contact Us page -->
+                    <li><a href="./aboutus.html">About Us</a></li>
+                </ul>
+            </nav>
+            <div class="search-bar">
+                <i class="fas fa-search"></i> <input type="text" placeholder="Search for brand, color, etc.">
+            </div>
+        </div>
+    </header>
+    <div class="slider-container">
+        <div class="slides">
+            <div class="slide"><img src="../images/banner11.jpg"></div>
+            <div class="slide"><img src="../images/ban2.gif"></div>
+            <div class="slide"><img src="../images/banner1.jpg"></div>
+        </div>
+   
+    </div>
+    <div class="scroller-container">
+        <div class="scroller-inner">
+            <div class="logo-item"><img src="../images/nikss.jpg" alt="Gucci Logo"></div>
+            <div class="logo-item"><img src="../images/hnm.jpg" alt="H&M Logo"></div>
+            <div class="logo-item"><img src="../images/leis.jpg" alt="Nike Logo"></div>
+            <div class="logo-item"><img src="../images/north.jpg" alt="The North Face Logo"></div>
+            <div class="logo-item"><img src="../images/ck.jpg" alt="Prada Logo"></div>
+             <div class="logo-item"><img src="../images/adidas.jpg" alt="Adidas Logo"></div>
+             <div class="logo-item"><img src="../images/the wall.jpg" alt="Puma Logo"></div>
+             <div class="logo-item"><img src="../images/baleno.jpg" alt="Reebok Logo"></div>
+
+            <div class="logo-item"><img src="../images/balen.jpg" alt="Gucci Logo"></div>
+            <div class="logo-item"><img src="https://placehold.co/150x50/e0e0e0/333?text=H%26M" alt="H&M Logo"></div>
+            <div class="logo-item"><img src="https://placehold.co/150x50/e0e0e0/333?text=NIKE" alt="Nike Logo"></div>
+           
+        </div>
+    </div>
+
+
+   
+    
+
+    <!-- Featured Collections Section -->
+    <section class="featured-collections">
+        <div class="container">
+            <h2>"Step Low, Fly High – Explore the Latest Dunk Lows"
+
+</h2>
+            <div class="featured-grid">
+                <!-- Featured Item 1 -->
+                <a href="./product.html" class="featured-item">
+                    <img src="../images/orange black.jpg" alt="Featured Sneaker 1"> <!-- Use image file names -->
+                    <h3>Low Orange Black</h3>
+                    <p>Lightweight and breathable designs perfect for warm weather.</p>
+                </a>
+                <!-- Featured Item 2 -->
+                 <a href="./product.html" class="featured-item">
+                    <img src="../images/holiday special.jpg" alt="Featured Boot 1"> <!-- Use image file names -->
+                    <h3>Holiday Special</h3>
+                    <p>Durable and stylish boots for city adventures.</p>
+                </a>
+                <!-- Featured Item 3 -->
+                 <a href="#" class="featured-item">
+                    <img src="../images/spor.jpg" alt="Featured Sandal 1"> <!-- Use image file names -->
+                    <h3>Sports Spice</h3>
+                    <p>Relax and recharge with our ultra-comfortable slides.</p>
+                </a>
+                 <!-- Featured Item 4 -->
+                 <a href="#" class="featured-item">
+                    <img src="../images/all star.jpg" alt="Featured Athletic Shoe"> <!-- Use image file names -->
+                    <h3>All Star </h3>
+                    <p>Engineered for speed and support on your runs.</p>
+                </a>
+            </div>
+        </div>
+    </section>
+    <section class="featured-collections">
+        <div class="container">
+            <h2>"Rise Above – High Air Jordan 1s That Define Legacy"
+
+</h2>
+            <div class="featured-grid">
+                <!-- Featured Item 1 -->
+                <a href="#" class="featured-item">
+                    <img src="../images/pine.jpg" alt="Featured Sneaker 1"> <!-- Use image file names -->
+                    <h3>Pine Green J1</h3>
+                    <p>Lightweight and breathable designs perfect for warm weather.</p>
+                </a>
+                <!-- Featured Item 2 -->
+                 <a href="#" class="featured-item">
+                    <img src="../images/multi.jpg" alt="Featured Boot 1"> <!-- Use image file names -->
+                    <h3>Multi Patent J1</h3>
+                    <p>Durable and stylish boots for city adventures.</p>
+                </a>
+                <!-- Featured Item 3 -->
+                 <a href="#" class="featured-item">
+                    <img src="../images/fak.jpg" alt="Featured Sandal 1"> <!-- Use image file names -->
+                    <h3>Yellow Taxi J1</h3>
+                    <p>Relax and recharge with our ultra-comfortable slides.</p>
+                </a>
+                 <!-- Featured Item 4 -->
+                 <a href="#" class="featured-item">
+                    <img src="../images/reverse.jpg" alt="Featured Athletic Shoe"> <!-- Use image file names -->
+                    <h3>Top Blue Yellow J1</h3>
+                    <p>Engineered for speed and support on your runs.</p>
+                </a>
+            </div>
+        </div>
+    </section>
+    <section class="featured-collections">
+        <div class="container">
+            <h2>"Chill Mode On – Shop Our Softest Slippers Yet"
+
+</h2>
+            <div class="featured-grid">
+                <!-- Featured Item 1 -->
+                <a href="#" class="featured-item">
+                    <img src="../images/foammss.jpg" alt="Featured Sneaker 1"> <!-- Use image file names -->
+                    <h3>Foam Runner</h3>
+                    <p>Lightweight and breathable designs perfect for warm weather.</p>
+                </a>
+                <!-- Featured Item 2 -->
+                 <a href="" class="featured-item">
+                    <img src="../images/birkens.jpg" alt="Featured Boot 1"> <!-- Use image file names -->
+                    <h3>Mocha Sandal</h3>
+                    <p>Durable and stylish boots for city adventures.</p>
+                </a>
+                <!-- Featured Item 3 -->
+                 <a href="" class="featured-item">
+                    <img src="../images/bir.jpg" alt="Featured Sandal 1"> <!-- Use image file names -->
+                    <h3>Boston Oiled</h3>
+                    <p>Relax and recharge with our ultra-comfortable slides.</p>
+                </a>
+                 <!-- Featured Item 4 -->
+                 <a href="" class="featured-item">
+                    <img src="../images/adies.jpg" alt="Featured Athletic Shoe"> <!-- Use image file names -->
+                    <h3>Adidas Slide</h3>
+                    <p>Engineered for speed and support on your runs.</p>
+                </a>
+            </div>
+        </div>
+    </section>
+    <!-- Site Overview / Explore Sections -->
+             <div class="overview-grid">
+                 <!-- Link to Products Page -->
+                 <a href="./product.html" class="overview-card">
+                    <i class="fas fa-shoe-prints"></i> <!-- Footwear icon -->
+                    <h3>Browse Products</h3>
+                    <p>Explore our full catalog of footwear.</p>
+                 </a>
+                 <!-- Link to Research/Blog Page -->
+                 <a href="./blog.html" class="overview-card">
+                    <i class="fas fa-newspaper"></i> <!-- Blog/News icon -->
+                    <h3>Read Our Research</h3>
+                    <p>Stay updated on footwear trends and technology.</p>
+                 </a>
+                 <!-- Link to About Us Page -->
+                 <a href="./aboutus.html" class="overview-card">
+                    <i class="fas fa-users"></i> <!-- Team icon -->
+                    <h3>Meet the Team</h3>
+                    <p>Learn about the people behind PAHI-LAA.</p>
+                 </a>
+                 <!-- Link to Contact Us Page -->
+                 <a href="./contactus.html" class="overview-card">
+                    <i class="fas fa-envelope"></i> <!-- Contact icon -->
+                    <h3>Get In Touch</h3>
+                    <p>Have questions? Contact us!</p>
+                 </a>
+             </div>
+         </div>
+     </section>
+
+
+    <!-- Footer Section (copied from other pages) -->
+    <footer>
+        <div class="container">
+            <div class="footer-left">
+                <div class="logo">
+                     <!-- Removed image from footer logo as per provided pages -->
+                    <span>PAHI-LAA</span>
+                </div>
+                <p>"Every step tells a story — our footwear is made to walk with you,<br> through everyday moments and
+                    unforgettable journeys.<br> Comfortable, reliable, and made for life on the move."</p>
+            </div>
+            <div class="footer-links">
+                <h4>Our Store</h4>
+                <ul>
+                    <li><a href="./aboutus.html">About</a></li> <!-- Link About to aboutus.html -->
+                    <li><a href="#">Service</a></li> <!-- Placeholder -->
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Further Links</h4>
+                <ul>
+                    <li><a href="#">Term & Condition</a></li> <!-- Placeholder -->
+                    <li><a href="./blog2.html">News</a></li> <!-- Link News to blog/research -->
+                    <li><a href="#">Learning</a></li> <!-- Placeholder -->
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h4>Get In Touch</h4>
+                <p>Infomatics College Pkr</p> <!-- Use the address from contactus.html -->
+                <p>+977-876-7432</p> <!-- Use the phone from contactus.html -->
+                <p>support@pahila.com</p> <!-- Use the email from contactus.html -->
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Copyright © 2025 PAHI-LAA | Powered by PAHI-LAA</p> <!-- Ensure year is 2025 as per coursework -->
+        </div>
+    </footer>
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelector('.slides');
+        const dots = document.querySelectorAll('.dot');
+        const totalSlides = 3;
+
+        function goToSlide(index) {
+            currentSlide = index;
+            slides.style.transform = `translateX(-${currentSlide * 33.33}%)`;
+            updateDots();
+        }
+
+        function updateDots() {
+            dots.forEach((dot, index) => {
+                
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        function autoSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            goToSlide(currentSlide);
+        }
+
+        setInterval(autoSlide, 3000);
+    </script>
+
+</body>
+
+</html>

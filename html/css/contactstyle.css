@@ -1,0 +1,468 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f0f0f0;
+    /* Light grey background for the body */
+}
+
+/* Container */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Header */
+header {
+    background-color: #fff;
+    /* White header */
+    padding: 15px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .logo {
+    display: flex;
+    align-items: center;
+}
+
+header .logo img {
+    width: 30px;
+    margin-right: 10px;
+}
+
+header .logo span {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #333;
+    /* Dark grey for logo text */
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+header nav ul li a {
+    text-decoration: none;
+    color: #666;
+    /* Medium grey for nav links */
+    font-weight: 500;
+}
+
+header nav ul li a.active {
+    font-weight: bold;
+    color: #333;
+}
+
+header .search-bar {
+    display: flex;
+    align-items: center;
+    background-color: #eee;
+    /* Light grey background for search bar */
+    border-radius: 20px;
+    padding: 8px 15px;
+    width: 300px;
+    /* Long search bar */
+    border: 1px solid #ccc;
+}
+
+header .search-bar input {
+    border: none;
+    outline: none;
+    background: none;
+    flex-grow: 1;
+    font-size: 1em;
+    color: #333;
+    padding: 0;
+}
+
+header .search-bar input::placeholder {
+    color: #777;
+}
+
+header .search-bar i {
+    color: #777;
+    margin-right: 10px;
+}
+
+/* Hero Section */
+.hero {
+    background-image: url('bread-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 50px 0;
+    text-align: center;
+    color: #333;
+    background-color: #e6e6e6;
+    /* Light grey background as fallback */
+}
+
+.hero h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    font-size: 1em;
+    color: #666;
+}
+
+/* Contact Section */
+.contact {
+    padding: 50px 0;
+    background-color: #92a5a7;
+    /* Light grey background */
+}
+
+.contact .container {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    /* Allow wrapping on smaller screens */
+}
+
+.contact-info {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    /* Responsive grid */
+    gap: 20px;
+}
+
+.contact-card {
+    background-color: #fff;
+    /* White background for cards */
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.contact-card i {
+    font-size: 1.5em;
+    color: #666;
+    /* Medium grey for icons */
+    margin-bottom: 10px;
+}
+
+.contact-card h3 {
+    font-size: 1.2em;
+    margin-bottom: 5px;
+}
+
+.contact-card p {
+    color: #666;
+}
+
+.map {
+    grid-column: span 2;
+    /* Span across two columns in the grid */
+}
+
+.map img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.contact-form {
+    height: 593px;
+    flex: 1;
+    min-width: 300px;
+    /* Minimum width for the form */
+    background-color: #fff;
+    /* White background for form */
+    padding: 30px;
+    border-radius: 25px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.contact-form h2 {
+    font-size: 1.8em;
+    margin-bottom: 10px;
+}
+
+.contact-form p {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.contact-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+    width: 100%;
+}
+
+.contact-form textarea {
+    height: 100px;
+    resize: none;
+}
+
+.contact-form button {
+    /* Adjusted margin and width for better centering */
+    margin: 0 auto;
+    width: 50%;
+    background-color: #000000;
+    /* Light grey button */
+    color: #ffffff;
+    padding: 10px;
+    border: none;
+    border-radius: 20px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.contact-form button:hover {
+    background-color: #bbb;
+}
+
+/* Footer */
+footer {
+    background-color: #d3d3d3;
+    /* Lighter grey for footer */
+    color: #333;
+    padding: 30px 0;
+}
+
+footer .container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+footer .logo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+footer .logo img {
+    width: 30px;
+    margin-right: 10px;
+}
+
+footer .logo span {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+footer .footer-left p {
+    color: #666;
+}
+
+footer .footer-links h4,
+footer .footer-contact h4 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+footer .footer-links ul {
+    list-style: none;
+    padding: 0;
+    /* Added padding 0 */
+}
+
+footer .footer-links ul li {
+    margin-bottom: 5px;
+}
+
+footer .footer-links ul li a {
+    color: #666;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    /* Added transition */
+}
+
+footer .footer-links ul li a:hover {
+    color: #333;
+}
+
+footer .footer-contact p {
+    margin-bottom: 5px;
+    color: #666;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding: 10px 0;
+    border-top: 1px solid #979797;
+    margin-top: 20px;
+}
+
+.footer-bottom p {
+    font-size: 0.9em;
+    color: #666;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    header .container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    header nav ul {
+        margin-top: 10px;
+        gap: 10px;
+    }
+
+    header .search-bar {
+        margin-top: 10px;
+        width: 100%;
+    }
+
+    .contact .container {
+        flex-direction: column;
+        /* Stack contact info and form */
+        gap: 20px;
+        /* Adjust gap */
+    }
+
+    .contact-info {
+        grid-template-columns: 1fr;
+        /* Single column for contact cards */
+    }
+
+    .map {
+        grid-column: span 1;
+        /* Map spans 1 column when stacked */
+    }
+
+    .contact-form {
+        min-width: auto;
+        /* Remove min-width when stacked */
+    }
+
+    footer .container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    footer .footer-left,
+    footer .footer-links,
+    footer .footer-contact {
+        width: 100%;
+        /* Full width for footer sections */
+        margin-bottom: 20px;
+        /* Space between sections */
+    }
+
+    footer .footer-links ul {
+        padding-left: 0;
+        /* Remove padding for stacked lists */
+    }
+}
+
+@media (max-width: 480px) {
+
+    header .container,
+    .contact .container,
+    footer .container {
+        width: 95%;
+        /* Adjust container width */
+        padding: 0 10px;
+        /* Add horizontal padding */
+    }
+
+    header .logo img {
+        width: 25px;
+    }
+
+    header .logo span {
+        font-size: 1.3em;
+    }
+
+    header nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+    }
+
+    header nav ul li {
+        margin: 0;
+    }
+
+    header .search-bar {
+        padding: 6px 10px;
+    }
+
+    .hero {
+        padding: 30px 0;
+    }
+
+    .hero h1 {
+        font-size: 2em;
+    }
+
+    .hero p {
+        font-size: 0.9em;
+    }
+
+    .contact {
+        padding: 30px 0;
+    }
+
+    .contact-card {
+        padding: 15px;
+    }
+
+    .contact-card i {
+        font-size: 1.3em;
+    }
+
+    .contact-card h3 {
+        font-size: 1.1em;
+    }
+
+    .contact-form {
+        padding: 20px;
+    }
+
+    .contact-form h2 {
+        font-size: 1.6em;
+    }
+
+    .contact-form p {
+        font-size: 0.9em;
+    }
+
+    .contact-form button {
+        width: 80%;
+        /* Make button wider */
+    }
+
+    footer {
+        padding: 20px 10px;
+    }
+
+    footer .footer-left,
+    footer .footer-links,
+    footer .footer-contact {
+        margin-bottom: 15px;
+    }
+}
